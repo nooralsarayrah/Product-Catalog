@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product-catalog</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto+Slab:wght@100..900&display=swap');
+</style>
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+<header class="header mt-4">
+  <div class="container-fluid px-3">
+    <div class="header-inner d-flex flex-wrap align-items-center gap-3 w-100">
+      
+     <!-- Logo -->
+  <div class="col-lg-3 col-md-3 col-12 d-flex justify-content-lg-start justify-content-center">
+    <a class="navbar-brand m-0" href="#">
+      <img src="images/logo.png" class="logo" alt="Avatar Logo">
+    </a>
+  </div>
+
+  <!-- Search -->
+  <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-center">
+    <input id="searchInput" type="text" class="form-control search-box" placeholder="Search">
+    <datalist id="searchSuggestions">
+
+    </datalist>
+  </div>
+
+      <div class="d-flex flex-wrap align-items-center gap-4 ms-lg-auto">
+        <div class="dropdown">
+          <button type="button" class="btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+            Category
+          </button>
+
+          <ul class="dropdown-menu" id="categoryMenu">
+            <li>
+              <a class="dropdown-item" href="#" data-category="all">All</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <button type="button" class="btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+            Sort
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end" id="sortMenu">
+            <li class="dropdown-item">
+              <a class="dropdown-item" href="#" data-sort="low">Low → High</a>
+            </li>
+            <li class="dropdown-item">
+              <a class="dropdown-item" href="#" data-sort="high">High → Low</a>
+            </li>
+          </ul>
+        </div>
+
+        <button class="btn position-relative border-0 bg-transparent flex-shrink-0"
+                data-bs-toggle="modal"
+                data-bs-target="#cartModal">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               width="28"
+               height="28"
+               viewBox="0 0 24 24"
+               fill="#000"
+               class="cart">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M6.21431 5.2697H22.2677L20.7908 16.9735H6.1958L4.71896 5.2697H4.7292L4.52192 3.59688H1.78076V2.12305H5.82441L6.21431 5.2697ZM6.39693 6.74354L6.46912 7.32609H6.46397L7.49535 15.4997H19.4913L20.5962 6.74354H6.39693Z">
+            </path>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M7.4451 22.0001C6.76679 22.0001 6.2169 21.4502 6.2169 20.7719C6.2169 20.0936 6.76679 19.5437 7.4451 19.5437C8.12342 19.5437 8.6733 20.0936 8.6733 20.7719C8.6733 21.4502 8.12342 22.0001 7.4451 22.0001Z">
+            </path>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M20.7883 20.7719C20.7883 21.4502 20.2384 22.0001 19.5601 22.0001C18.8817 22.0001 18.3319 21.4502 18.3319 20.7719C18.3319 20.0936 18.8817 19.5437 19.5601 19.5437C20.2384 19.5437 20.7883 20.0936 20.7883 20.7719Z">
+            </path>
+          </svg>
+
+          <span id="cartCount" class="cart-count">0</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+    <section class="container-fluid hero">
+    <div class="container">
+        <h1 class="title">Discover Amazing Products</h1>
+        <p class="sub-title">Browse our latest collection.</p>
+    </div>
+</section>
+  <main class=" main container my-5">
+
+    <div id="products-container" class="text-center mt-5">
+
+      <div class="spinner-border text-primary" role="status"></div>
+
+      <p class="mt-3">Loading products...</p>
+
+    </div>
+
+  </main>
+
+  <div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Product Details</h5>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal">
+          </button>
+        </div>
+
+        <div class="modal-body" id="modalBody">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="cartModal" tabindex="-1">
+
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h5 class="modal-title">Shopping Cart</h5>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal">
+          </button>
+
+        </div>
+
+        <div class="modal-body" id="cartBody">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <footer class="footer mt-auto text-center border-top">
+    <div class="container">
+    <p class="mb-0">&copy; 2026 Product catalog. All rights reserved. </p>
+    
+    </div>
+  </footer>
+  <script src="js/script.js"></script>
+
+
+</body>
+
+</html>
